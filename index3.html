@@ -1,0 +1,1164 @@
+```html
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Python Academy</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Tahoma,Arial,sans-serif;
+    background:#070a10;
+    color:#fff;
+    line-height:1.8;
+}
+
+header{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:#0c111a;
+    border-bottom:1px solid #263040;
+}
+
+nav{
+    max-width:1200px;
+    margin:auto;
+    padding:15px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    color:#00e5ff;
+    font-size:22px;
+    font-weight:bold;
+}
+
+nav a{
+    color:#aaa;
+    text-decoration:none;
+    margin:0 8px;
+}
+
+nav a:hover{
+    color:#00e5ff;
+}
+
+.status{
+    background:#151c27;
+    border:1px solid #303a4c;
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:13px;
+}
+
+.hero{
+    text-align:center;
+    padding:90px 20px;
+    background:
+    radial-gradient(circle,#12313d,transparent 50%),
+    #080b12;
+}
+
+.hero h1{
+    font-size:60px;
+    color:#00e5ff;
+}
+
+.hero p{
+    color:#aaa;
+    max-width:700px;
+    margin:15px auto;
+}
+
+.btn{
+    border:0;
+    padding:12px 22px;
+    border-radius:10px;
+    cursor:pointer;
+    font-family:inherit;
+    font-weight:bold;
+}
+
+.primary{
+    background:#00e5ff;
+    color:#001016;
+}
+
+.dark{
+    background:#171e29;
+    color:#fff;
+    border:1px solid #303a4c;
+}
+
+section{
+    max-width:1150px;
+    margin:auto;
+    padding:60px 20px;
+}
+
+.title{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.title h2{
+    font-size:30px;
+}
+
+.title p{
+    color:#888;
+}
+
+.courses{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.course{
+    background:#101620;
+    border:1px solid #273142;
+    border-radius:16px;
+    padding:25px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.course:hover{
+    transform:translateY(-5px);
+    border-color:#00e5ff;
+}
+
+.course .icon{
+    font-size:40px;
+}
+
+.course p{
+    color:#999;
+    font-size:14px;
+}
+
+.course button{
+    margin-top:15px;
+    width:100%;
+}
+
+#courseArea{
+    display:none;
+}
+
+.lesson-box{
+    background:#101620;
+    border:1px solid #273142;
+    border-radius:16px;
+    padding:25px;
+}
+
+.lesson-box h2{
+    color:#00e5ff;
+    margin-bottom:10px;
+}
+
+.video-container{
+    margin-top:20px;
+    background:#05070b;
+    border-radius:12px;
+    overflow:hidden;
+}
+
+video{
+    width:100%;
+    display:block;
+    min-height:300px;
+}
+
+.lock{
+    background:#171d28;
+    border:1px solid #353e4d;
+    padding:30px;
+    border-radius:12px;
+    text-align:center;
+    color:#aaa;
+}
+
+.pricing{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:25px;
+    max-width:850px;
+    margin:auto;
+}
+
+.price-card{
+    background:#101620;
+    border:1px solid #273142;
+    border-radius:16px;
+    padding:30px;
+    text-align:center;
+}
+
+.price{
+    color:#00e5ff;
+    font-size:42px;
+    font-weight:bold;
+}
+
+.old{
+    color:#666;
+    text-decoration:line-through;
+}
+
+.price-card li{
+    list-style:none;
+    color:#aaa;
+    margin:8px;
+}
+
+.quiz-box{
+    background:#101620;
+    border:1px solid #273142;
+    border-radius:16px;
+    padding:25px;
+}
+
+.quiz-lock{
+    text-align:center;
+    padding:45px 20px;
+}
+
+.question{
+    margin-bottom:25px;
+}
+
+.option{
+    display:block;
+    background:#181f2b;
+    border:1px solid #303a4b;
+    border-radius:8px;
+    padding:10px;
+    margin:7px 0;
+    cursor:pointer;
+}
+
+.option:hover{
+    border-color:#00e5ff;
+}
+
+.result{
+    color:#00e5ff;
+    margin-top:20px;
+    font-weight:bold;
+}
+
+.progress{
+    background:#151c27;
+    border-radius:20px;
+    height:20px;
+    overflow:hidden;
+}
+
+.progress-fill{
+    height:100%;
+    width:0%;
+    background:#00e5ff;
+    transition:.4s;
+}
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.8);
+    z-index:500;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.modal-box{
+    background:#101620;
+    border:1px solid #334052;
+    border-radius:18px;
+    padding:30px;
+    width:100%;
+    max-width:500px;
+    text-align:center;
+}
+
+.payment-buttons{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+    margin:25px 0;
+}
+
+.payment{
+    background:#181f2b;
+    color:#fff;
+    border:1px solid #303a4b;
+    border-radius:10px;
+    padding:20px;
+    cursor:pointer;
+}
+
+.payment:hover{
+    border-color:#00e5ff;
+}
+
+footer{
+    border-top:1px solid #222b38;
+    text-align:center;
+    color:#777;
+    padding:30px;
+}
+
+@media(max-width:800px){
+    .courses,
+    .pricing{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        font-size:42px;
+    }
+
+    nav div:nth-child(2){
+        display:none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<nav>
+
+    <div class="logo">
+        🐍 Python Academy
+    </div>
+
+    <div>
+        <a href="#courses">دوره‌ها</a>
+        <a href="#pricing">اشتراک</a>
+        <a href="#quiz">آزمون</a>
+    </div>
+
+    <div class="status" id="status">
+        🔒 بدون اشتراک
+    </div>
+
+</nav>
+</header>
+
+<section class="hero">
+
+    <h1>Python Academy</h1>
+
+    <p>
+        یادگیری پایتون با دوره‌های ویدیویی،
+        پروژه‌های عملی و آزمون.
+    </p>
+
+    <br>
+
+    <button class="btn primary"
+            onclick="document.getElementById('courses').scrollIntoView()">
+        شروع یادگیری
+    </button>
+
+</section>
+
+<!-- COURSES -->
+
+<section id="courses">
+
+<div class="title">
+    <h2>🎮 دوره‌های پایتون</h2>
+    <p>برای مشاهده هر دوره روی آن کلیک کن.</p>
+</div>
+
+<div class="courses">
+
+<div class="course" onclick="openCourse(1)">
+    <div class="icon">🐍</div>
+    <h3>مبانی Python</h3>
+    <p>متغیرها، چاپ و دریافت اطلاعات.</p>
+    <button class="btn dark">مشاهده دوره</button>
+</div>
+
+<div class="course" onclick="openCourse(2)">
+    <div class="icon">🔀</div>
+    <h3>شرط‌ها</h3>
+    <p>if، elif و else.</p>
+    <button class="btn dark">مشاهده دوره</button>
+</div>
+
+<div class="course" onclick="openCourse(3)">
+    <div class="icon">🔁</div>
+    <h3>حلقه‌ها</h3>
+    <p>for و while.</p>
+    <button class="btn dark">مشاهده دوره</button>
+</div>
+
+<div class="course" onclick="openCourse(4)">
+    <div class="icon">⚙️</div>
+    <h3>توابع</h3>
+    <p>ساخت و استفاده از function.</p>
+    <button class="btn dark">مشاهده دوره</button>
+</div>
+
+<div class="course" onclick="openCourse(5)">
+    <div class="icon">🧱</div>
+    <h3>کلاس‌ها</h3>
+    <p>مقدمات برنامه‌نویسی شیءگرا.</p>
+    <button class="btn dark">مشاهده دوره</button>
+</div>
+
+<div class="course" onclick="openCourse(6)">
+    <div class="icon">🚀</div>
+    <h3>پروژه نهایی</h3>
+    <p>ساخت پروژه با Python.</p>
+    <button class="btn dark">مشاهده دوره</button>
+</div>
+
+</div>
+</section>
+
+<!-- COURSE AREA -->
+
+<section id="courseArea">
+
+<div class="lesson-box">
+
+    <h2 id="courseTitle"></h2>
+
+    <p id="courseDescription"></p>
+
+    <div id="videoArea"></div>
+
+    <br>
+
+    <button class="btn dark"
+            onclick="closeCourse()">
+        برگشت به دوره‌ها
+    </button>
+
+</div>
+
+</section>
+
+<!-- PRICING -->
+
+<section id="pricing">
+
+<div class="title">
+    <h2>💳 خرید اشتراک</h2>
+    <p>برای دسترسی به ویدیوها و آزمون اشتراک تهیه کن.</p>
+</div>
+
+<div class="pricing">
+
+<div class="price-card">
+
+    <h3>اشتراک ماهانه</h3>
+
+    <div class="old">$5</div>
+
+    <div class="price">$4</div>
+
+    <p>ماه اول برای کاربر جدید</p>
+
+    <ul>
+        <li>✅ تمام دوره‌ها</li>
+        <li>✅ ویدیوها</li>
+        <li>✅ آزمون</li>
+        <li>✅ پروژه‌ها</li>
+    </ul>
+
+    <button class="btn primary"
+            onclick="openPayment('ماهانه',4)">
+        خرید ماهانه
+    </button>
+
+</div>
+
+<div class="price-card">
+
+    <h3>اشتراک سالانه</h3>
+
+    <div class="old">$20</div>
+
+    <div class="price">$19</div>
+
+    <p>سال اول برای کاربر جدید</p>
+
+    <ul>
+        <li>✅ تمام دوره‌ها</li>
+        <li>✅ ویدیوها</li>
+        <li>✅ آزمون</li>
+        <li>✅ پروژه‌ها</li>
+    </ul>
+
+    <button class="btn primary"
+            onclick="openPayment('سالانه',19)">
+        خرید سالانه
+    </button>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- QUIZ -->
+
+<section id="quiz">
+
+<div class="title">
+    <h2>🧠 آزمون Python</h2>
+    <p>آزمون فقط برای کاربران دارای اشتراک فعال است.</p>
+</div>
+
+<div class="quiz-box" id="quizBox"></div>
+
+</section>
+
+<!-- PROGRESS -->
+
+<section>
+
+<div class="title">
+    <h2>📊 پیشرفت</h2>
+</div>
+
+<div class="progress">
+
+    <div class="progress-fill"
+         id="progressFill"></div>
+
+</div>
+
+<p style="text-align:center;margin-top:10px"
+   id="progressText">
+    0%
+</p>
+
+<br>
+
+<div style="text-align:center">
+
+<button class="btn primary"
+        onclick="completeLesson()">
+    تکمیل درس
+</button>
+
+</div>
+
+</section>
+
+<footer>
+    Python Academy © 2026
+</footer>
+
+<!-- PAYMENT MODAL -->
+
+<div class="modal" id="paymentModal">
+
+<div class="modal-box">
+
+<h2>💳 انتخاب درگاه</h2>
+
+<p id="planText"></p>
+
+<div class="payment-buttons">
+
+<button class="payment"
+        onclick="fakePayment('پست‌بانک')">
+    🏦
+    <br>
+    پست‌بانک
+</button>
+
+<button class="payment"
+        onclick="fakePayment('بانک سپه')">
+    🏦
+    <br>
+    بانک سپه
+</button>
+
+</div>
+
+<button class="btn dark"
+        onclick="closePayment()">
+    بستن
+</button>
+
+<p style="color:#888;font-size:12px;margin-top:15px">
+    این نسخه پرداخت واقعی انجام نمی‌دهد.
+</p>
+
+</div>
+
+</div>
+
+<script>
+
+/* =========================
+   USER SUBSCRIPTION
+========================= */
+
+let subscribed =
+    localStorage.getItem("pythonAcademySubscription") === "true";
+
+let progress =
+    Number(localStorage.getItem("pythonProgress")) || 0;
+
+
+/* =========================
+   STATUS
+========================= */
+
+function updateStatus(){
+
+    const status =
+        document.getElementById("status");
+
+    if(subscribed){
+
+        status.innerText =
+            "✅ اشتراک فعال";
+
+    }else{
+
+        status.innerText =
+            "🔒 بدون اشتراک";
+
+    }
+
+}
+
+updateStatus();
+
+
+/* =========================
+   COURSE DATA
+========================= */
+
+const courses = {
+
+1:{
+    title:"🐍 مبانی Python",
+    description:"در این درس با متغیرها، print و input آشنا می‌شوی.",
+    video:"videos/python-basics.mp4"
+},
+
+2:{
+    title:"🔀 شرط‌ها",
+    description:"یادگیری if، elif و else.",
+    video:"videos/conditions.mp4"
+},
+
+3:{
+    title:"🔁 حلقه‌ها",
+    description:"آموزش حلقه‌های for و while.",
+    video:"videos/loops.mp4"
+},
+
+4:{
+    title:"⚙️ توابع",
+    description:"ساخت تابع و استفاده از return.",
+    video:"videos/functions.mp4"
+},
+
+5:{
+    title:"🧱 کلاس‌ها",
+    description:"مقدمات برنامه‌نویسی شیءگرا.",
+    video:"videos/classes.mp4"
+},
+
+6:{
+    title:"🚀 پروژه نهایی",
+    description:"ساخت یک پروژه ساده با Python.",
+    video:"videos/project.mp4"
+}
+
+};
+
+
+/* =========================
+   OPEN COURSE
+========================= */
+
+function openCourse(id){
+
+    const course =
+        courses[id];
+
+    document.getElementById("courseArea")
+        .style.display = "block";
+
+    document.getElementById("courseTitle")
+        .innerText = course.title;
+
+    document.getElementById("courseDescription")
+        .innerText = course.description;
+
+    const videoArea =
+        document.getElementById("videoArea");
+
+    if(!subscribed){
+
+        videoArea.innerHTML = `
+
+        <div class="lock">
+
+            🔒 این ویدیو قفل است.
+
+            <br><br>
+
+            برای مشاهده این دوره
+            باید اشتراک داشته باشی.
+
+            <br><br>
+
+            <button class="btn primary"
+                    onclick="goPricing()">
+                خرید اشتراک
+            </button>
+
+        </div>
+
+        `;
+
+    }else{
+
+        videoArea.innerHTML = `
+
+        <div class="video-container">
+
+            <video controls>
+
+                <source
+                    src="${course.video}"
+                    type="video/mp4">
+
+                مرورگر شما از پخش ویدیو پشتیبانی نمی‌کند.
+
+            </video>
+
+        </div>
+
+        `;
+
+    }
+
+    document.getElementById("courseArea")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+}
+
+
+/* =========================
+   CLOSE COURSE
+========================= */
+
+function closeCourse(){
+
+    document.getElementById("courseArea")
+        .style.display = "none";
+
+    document.getElementById("courses")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+}
+
+
+/* =========================
+   PAYMENT
+========================= */
+
+let selectedPlan = "";
+let selectedPrice = 0;
+
+function openPayment(plan,price){
+
+    selectedPlan = plan;
+    selectedPrice = price;
+
+    document.getElementById("planText")
+        .innerText =
+        "اشتراک " +
+        plan +
+        " — $" +
+        price;
+
+    document.getElementById("paymentModal")
+        .style.display = "flex";
+}
+
+function closePayment(){
+
+    document.getElementById("paymentModal")
+        .style.display = "none";
+
+}
+
+
+/* =========================
+   FAKE PAYMENT
+========================= */
+
+function fakePayment(bank){
+
+    const confirmPayment =
+        confirm(
+        "درگاه " +
+        bank +
+        " انتخاب شد.\n\n" +
+        "این پرداخت در نسخه HTML نمایشی است.\n" +
+        "آیا اشتراک را به صورت آزمایشی فعال کنیم؟"
+        );
+
+    if(confirmPayment){
+
+        subscribed = true;
+
+        localStorage.setItem(
+            "pythonAcademySubscription",
+            "true"
+        );
+
+        updateStatus();
+
+        alert(
+            "اشتراک با موفقیت به صورت آزمایشی فعال شد! ✅"
+        );
+
+        closePayment();
+
+        updateQuiz();
+
+    }
+
+}
+
+
+/* =========================
+   GO PRICING
+========================= */
+
+function goPricing(){
+
+    document.getElementById("pricing")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+}
+
+
+/* =========================
+   QUIZ
+========================= */
+
+function updateQuiz(){
+
+    const box =
+        document.getElementById("quizBox");
+
+    if(!subscribed){
+
+        box.innerHTML = `
+
+        <div class="quiz-lock">
+
+            <h3>🔒 آزمون قفل است</h3>
+
+            <p>
+                برای شرکت در آزمون باید اشتراک داشته باشی.
+            </p>
+
+            <br>
+
+            <button class="btn primary"
+                    onclick="goPricing()">
+                خرید اشتراک
+            </button>
+
+        </div>
+
+        `;
+
+        return;
+    }
+
+    box.innerHTML = `
+
+    <div class="question">
+
+        <h3>
+        1. برای چاپ متن در Python از کدام دستور استفاده می‌شود؟
+        </h3>
+
+        <label class="option">
+            <input type="radio" name="q1" value="1">
+            print()
+        </label>
+
+        <label class="option">
+            <input type="radio" name="q1" value="0">
+            show()
+        </label>
+
+        <label class="option">
+            <input type="radio" name="q1" value="0">
+            write()
+        </label>
+
+        <label class="option">
+            <input type="radio" name="q1" value="0">
+            display()
+        </label>
+
+    </div>
+
+
+    <div class="question">
+
+        <h3>
+        2. برای ایجاد شرط در Python از چه کلمه‌ای استفاده می‌شود؟
+        </h3>
+
+        <label class="option">
+            <input type="radio" name="q2" value="1">
+            if
+        </label>
+
+        <label class="option">
+            <input type="radio" name="q2" value="0">
+            loop
+        </label>
+
+        <label class="option">
+            <input type="radio" name="q2" value="0">
+            check
+        </label>
+
+        <label class="option">
+            <input type="radio" name="q2" value="0">
+            condition
+        </label>
+
+    </div>
+
+
+    <div class="question">
+
+        <h3>
+        3. کدام مورد یک حلقه در Python است؟
+        </h3>
+
+        <label class="option">
+            <input type="radio" name="q3" value="1">
+            for
+        </label>
+
+        <label class="option">
+            <input type="radio" name="q3" value="0">
+            print
+        </label>
+
+        <label class="option">
+            <input type="radio" name="q3" value="0">
+            input
+        </label>
+
+        <label class="option">
+            <input type="radio" name="q3" value="0">
+            def
+        </label>
+
+    </div>
+
+
+    <div class="question">
+
+        <h3>
+        4. برای تعریف تابع از چه کلمه‌ای استفاده می‌شود؟
+        </h3>
+
+        <label class="option">
+            <input type="radio" name="q4" value="1">
+            def
+        </label>
+
+        <label class="option">
+            <input type="radio" name="q4" value="0">
+            function
+        </label>
+
+        <label class="option">
+            <input type="radio" name="q4" value="0">
+            func
+        </label>
+
+        <label class="option">
+            <input type="radio" name="q4" value="0">
+            create
+        </label>
+
+    </div>
+
+
+    <div class="question">
+
+        <h3>
+        5. برای گرفتن ورودی از کاربر از چه چیزی استفاده می‌شود؟
+        </h3>
+
+        <label class="option">
+            <input type="radio" name="q5" value="1">
+            input()
+        </label>
+
+        <label class="option">
+            <input type="radio" name="q5" value="0">
+            get()
+        </label>
+
+        <label class="option">
+            <input type="radio" name="q5" value="0">
+            read()
+        </label>
+
+        <label class="option">
+            <input type="radio" name="q5" value="0">
+            scan()
+        </label>
+
+    </div>
+
+    <button class="btn primary"
+            onclick="checkQuiz()">
+        ثبت آزمون
+    </button>
+
+    <div class="result"
+         id="quizResult">
+    </div>
+
+    `;
+
+}
+
+
+/* =========================
+   CHECK QUIZ
+========================= */
+
+function checkQuiz(){
+
+    let score = 0;
+
+    for(let i=1;i<=5;i++){
+
+        const answer =
+            document.querySelector(
+                'input[name="q'+i+'"]:checked'
+            );
+
+        if(answer){
+
+            score += Number(answer.value);
+
+        }
+
+    }
+
+    document.getElementById("quizResult")
+        .innerText =
+        "امتیاز شما: " +
+        score +
+        " از 5";
+
+}
+
+
+/* =========================
+   PROGRESS
+========================= */
+
+function updateProgress(){
+
+    document.getElementById("progressFill")
+        .style.width =
+        progress + "%";
+
+    document.getElementById("progressText")
+        .innerText =
+        progress + "%";
+
+}
+
+function completeLesson(){
+
+    if(progress < 100){
+
+        progress += 10;
+
+        localStorage.setItem(
+            "pythonProgress",
+            progress
+        );
+
+        updateProgress();
+
+    }else{
+
+        alert("دوره را کامل کرده‌ای! 🎉");
+
+    }
+
+}
+
+updateProgress();
+updateQuiz();
+
+
+/* =========================
+   CLOSE MODAL
+========================= */
+
+window.addEventListener("click",function(e){
+
+    const modal =
+        document.getElementById("paymentModal");
+
+    if(e.target === modal){
+
+        closePayment();
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>
+```
